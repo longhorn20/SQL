@@ -1,0 +1,10 @@
+CREATE TABLE crawfish_store (id INTEGER PRIMARY KEY, item TEXT, price INTEGER, sold INTEGER, brand TEXT);
+
+INSERT INTO crawfish_store VALUES (1, "Crawfish", 70, 15, "Lousiana");
+INSERT INTO crawfish_store VALUES (2, "Seasoning", 21, 20, "Cajunland");
+INSERT INTO crawfish_store VALUES (3, "Boiler Pot", 120, 15, "Boiler Boss");
+INSERT INTO crawfish_store VALUES (4, "Paddle", 25, 30, "Academy");
+
+SELECT * FROM crawfish_store;
+SELECT SUM (sold) from crawfish_store;
+SELECT * FROM crawfish_store WHERE price ORDER BY price
