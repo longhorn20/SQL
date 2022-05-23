@@ -1,0 +1,35 @@
+Movie stars: What movies are they in? Who are they married to? Have they acted together?
+
+CREATE TABLE stars (id INTEGER PRIMARY KEY, name TEXT, movie TEXT);
+
+INSERT INTO stars VALUES (1, "John Krazinksi", "The Office");
+INSERT INTO stars VALUES (2, "Emily Blunt", "Jungle Cruise");
+INSERT INTO stars VALUES (3, "Steve Carell", "Anchorman");
+INSERT INTO stars VALUES (4, "Nancy Carell", "Bridesmaids");
+INSERT INTO stars VALUES (5, "Will Ferrell", "Step Brothers"); 
+
+CREATE TABLE spouse (id INTEGER PRIMARY KEY, name TEXT, acting_together TEXT);
+
+INSERT INTO spouse VALUES (1, "Emily Blunt", "A Quiet Place");
+INSERT INTO spouse VALUES (2, "John Krazinksi", "A Quiet Place");
+INSERT INTO spouse VALUES (3, "Nancy Carell", "The Office");
+INSERT INTO spouse VALUES (4, "Steve Carell", "The Office");
+INSERT INTO spouse VALUES (5, "Viveca Paulin", "Null");
+
+CREATE TABLE married_to_name (id INTEGER PRIMARY KEY,
+    married_to1_id INTEGER,
+    married_to2_id INTEGER);
+
+INSERT INTO married_to_name (married_to1_id, married_to2_id)
+    VALUES(1, 1);
+INSERT INTO married_to_name (married_to1_id, married_to2_id)
+    VALUES(3, 3);
+
+SELECT * FROM stars;
+SELECT * FROM spouse;
+
+SELECT s.name as actor, m.name as spouse, m.acting_together FROM married_to_name
+    JOIN stars s
+    ON married_to_name.married_to1_id = s.id
+    JOIN spouse m 
+    ON married_to_name.married_to2_id = m.id;
