@@ -44,3 +44,8 @@ SELECT artist_name, track_name, duration_ms
 FROM BIT_DB.Spotifydata 
 ORDER BY duration_ms DESC
 LIMIT 10;
+
+#Then I wanted to see how many times Olivia Rodrigo landed on the list.
+SELECT artist_name, track_name
+FROM BIT_DB.Spotifydata
+WHERE artist_name='Olivia Rodrigo';
