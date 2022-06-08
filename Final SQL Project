@@ -9,4 +9,10 @@ FROM chinook.customers
 WHERE country = 'Brazil';
 
 #3. Find the Invoices of customers who are from Brazil. The resulting table should show the customer's full name, Invoice ID, Date of the invoice, and billing country.
+SELECT c.FirstName, c.LastName, i.BillingCountry, i.invoiceid, i.InvoiceDate
+FROM chinook.customers c
+JOIN chinook.invoices i
+ON c.CustomerId=i.CustomerId
+WHERE Billingcountry = 'Brazil';
+
 
