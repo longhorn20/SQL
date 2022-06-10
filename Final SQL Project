@@ -61,8 +61,20 @@ JOIN chinook.media_types m ON t.MediaTypeId= m.MediaTypeId
 JOIN chinook.genres g ON t.GenreId= g.GenreId;
 
 #13. Show the total sales made by each sales agent.
-
+SELECT e.FirstName, e.LastName, ROUND(SUM(i.Total), 2) as 'Total Sales' 
+FROM chinook.Employees e
+JOIN chinook.Customers c ON c.SupportRepId = e.EmployeeId
+JOIN chinook.Invoices i ON i.CustomerId = c.CustomerId
+WHERE e.Title = 'Sales Support Agent' 
+GROUP BY e.FirstName;
 
 #14. Which sales agent made the most in sales in 2009?
-
+SELECT e.FirstName, e.LastName, ROUND (SUM(i.Total),2) as 'Total Sales' 
+FROM chinook.Employees e
+JOIN chinook.Customers c ON c.SupportRepId = e.EmployeeId
+JOIN chinook.Invoices i ON i.CustomerId = c.CustomerId
+WHERE e.Title = 'Sales Support Agent'
+AND i.InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
+GROUP BY e.FirstName
+ORDER BY (ROUND(SUM(i.Total),2)) DESC LIMIT 1;
 
