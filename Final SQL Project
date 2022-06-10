@@ -78,3 +78,18 @@ AND i.InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31'
 GROUP BY e.FirstName
 ORDER BY (ROUND(SUM(i.Total),2)) DESC LIMIT 1;
 
+#15. Which genre sold the most overall?
+SELECT g.Name AS 'Genre Name', ROUND (Sum(i.Total),2) AS 'Total Sold'
+FROM chinook.genres g 
+JOIN chinook.tracks t ON g.GenreId= t.GenreId
+JOIN chinook.invoices i ON i.InvoiceId= t.TrackId
+GROUP BY g.Name
+ORDER BY ROUND (Sum(i.Total),2) DESC LIMIT 1;
+
+#16. How many tracks that Kurt Cobain composed sold overall?
+SELECT t.Composer, ROUND (SUM(v.Total), 2) as 'Tracks Sold'
+FROM chinook.Invoice_items i 
+JOIN chinook.Tracks t ON i.TrackId = t.TrackId
+JOIN chinook.invoices v ON i.InvoiceId= v.InvoiceId
+AND t.Composer = 'Kurt Cobain';
+
